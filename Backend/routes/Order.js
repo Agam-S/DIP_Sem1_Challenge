@@ -2,6 +2,7 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
+const orm = require("./orm");
 
 router.get("/", async (req, res) => {
   try {
@@ -31,11 +32,13 @@ router.get("/cust/:CustID", async (req, res) => {
 
 router.post("/pro", async (req, res) => {
   try {
-    const foundProduct = await Product.findOne({ ProdID: req.body.ProdID });
-    const UnitPrice = foundProduct.UnitPrice;
+    const totalValue = await orm.getProduct(req.body.ProdID, req.body.Quantity);
+    const totalGST = await orm.totalGst(totalValue);
+    // const foundProduct = await Product.findOne({ ProdID: req.body.ProdID });
+    // const UnitPrice = foundProduct.UnitPrice;
 
-    totalPrice = UnitPrice * req.body.Quantity;
-    totalGST = totalPrice * 1.1;
+    // totalPrice = UnitPrice * req.body.Quantity;
+    // totalGST = totalPrice * 1.1;
 
     const newCat = new Order({
       CustID: req.body.CustID,
@@ -44,7 +47,7 @@ router.post("/pro", async (req, res) => {
       Quantity: req.body.Quantity,
       ShipDate: req.body.ShipDate,
       ShipMode: req.body.ShipMode,
-      TotalValue: totalPrice,
+      TotalValue: totalValue,
       GST: totalGST,
     });
     const savedCat = await newCat.save();
