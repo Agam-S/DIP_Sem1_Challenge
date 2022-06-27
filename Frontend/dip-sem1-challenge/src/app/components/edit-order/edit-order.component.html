@@ -1,0 +1,15 @@
+<div *ngFor="let t of Order">
+  <h1>{{ t.CustID }}</h1>
+  <input type="text" #custid />
+  <h1 *ngFor="let t of Order">{{ t.ProdID }}</h1>
+  <input type="text" #prodid />
+  <h1 *ngFor="let t of Order">{{ t.OrderDate }}</h1>
+  <input type="text" #orderdate />
+  <h1 *ngFor="let t of Order">{{ t.Quantity }}</h1>
+  <input type="text" #qty />
+  <h1 *ngFor="let t of Order">{{ t.ShipDate }}</h1>
+  <input type="text" #shipdate />
+  <h1 *ngFor="let t of Order">{{ t.ShipMode }}</h1>
+  <input type="text" #shipmode />
+</div>
+<button class="btn btn-primary" (click)="updateOrder()">Update</button>

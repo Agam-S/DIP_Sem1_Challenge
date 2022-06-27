@@ -1,0 +1,19 @@
+<div>
+  <select (change)="onChange($event)" required placeholder="custid">
+    <option value="">Select id</option>
+    <option *ngFor="let c of custs" value="{{ c.CustID }}">
+      {{ c.CustID }}
+    </option>
+  </select>
+  <select (change)="onChangee($event)" required placeholder="prodid">
+    <option value="">Select id</option>
+    <option *ngFor="let c of prods" value="{{ c.ProdID }}">
+      {{ c.ProdID }}
+    </option>
+  </select>
+  <input type="text" #orderdate placeholder="orderdate" />
+  <input type="text" #qty placeholder="qty" />
+  <input type="text" #shipdate placeholder="shipdate" />
+  <input type="text" #shipmode placeholder="shipmode" />
+</div>
+<button class="btn btn-primary" (click)="createOrder()">Create</button>

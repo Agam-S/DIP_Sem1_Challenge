@@ -1,0 +1,28 @@
+<div
+  class="card"
+  style="width: 18rem"
+  id="teamOutput"
+  *ngFor="let t of this.orders"
+>
+  <img class="" />
+  <div class="card-body text-center justify-center space-around">
+    <h4 class="card-title">CUSTID: {{ t.CustID }}</h4>
+    <h4 class="card-title">PRODID : {{ t.ProdID }}</h4>
+    <h4 class="card-title">ORDERID: {{ t.OrderDate }}</h4>
+    <h4 class="card-title">QUANTITY: {{ t.Quantity }}</h4>
+    <h4 class="card-title">SHIP ID : {{ t.ShipDate }}</h4>
+    <h4 class="card-title">SHIP MODE :{{ t.ShipMode }}</h4>
+    <h4 class="card-title">totalvalue :{{ t.TotalValue }}</h4>
+    <h4 class="card-title">gst :{{ t.GST }}</h4>
+
+    <div class="buttons">
+      <button (click)="editOrder(t._id)" class="btn btn-primary btn-round">
+        Edit
+      </button>
+
+      <button (click)="removeOrder(t._id)" class="btn btn-danger btn-round">
+        Remove
+      </button>
+    </div>
+  </div>
+</div>
